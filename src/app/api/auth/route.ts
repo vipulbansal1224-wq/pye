@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     const { password } = await request.json();
 
-    if (password === 'admin123') {
+    if (password === 'alto7528') {
       cookies().set('admin_auth', 'true', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
