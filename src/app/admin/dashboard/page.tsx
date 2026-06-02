@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 export default function AdminDashboard() {
   const [products, setProducts] = useState<any[]>([]);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
+  const [viewingProduct, setViewingProduct] = useState<any | null>(null);
   const [isLocalhost, setIsLocalhost] = useState(true);
   const [uploading, setUploading] = useState(false);
   const router = useRouter();
@@ -184,6 +185,7 @@ export default function AdminDashboard() {
                 <td style={{ padding: '12px', color: 'var(--text-muted)' }}>{p.category}</td>
                 <td style={{ padding: '12px', color: 'var(--text-muted)' }}>{p.slug}</td>
                 <td style={{ padding: '12px' }}>
+                  <button onClick={() => setViewingProduct(p)} style={{ color: '#10b981', marginRight: '16px', fontWeight: 'bold' }}>View</button>
                   <button onClick={() => setEditingProduct(p)} style={{ color: 'var(--primary)', marginRight: '16px', fontWeight: 'bold' }}>Edit</button>
                   <button onClick={() => handleDelete(p.slug)} style={{ color: '#ef4444', fontWeight: 'bold' }}>Delete</button>
                 </td>
@@ -193,6 +195,36 @@ export default function AdminDashboard() {
           </tbody>
         </table>
       </div>
+
+      {viewingProduct && (
+        <div className="modal-overlay">
+          <div className="modal-content glass-card" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
+            <button className="modal-close" onClick={() => setViewingProduct(null)}>&times;</button>
+            <h2 style={{ marginBottom: '16px' }}>Product Preview</h2>
+            <div style={{ marginBottom: '24px' }}>
+              {viewingProduct.images && viewingProduct.images[0] && (
+                <img src={viewingProduct.images[0]} alt={viewingProduct.title} style={{ width: '100%', maxHeight: '300px', objectFit: 'contain', borderRadius: '8px', marginBottom: '16px' }} />
+              )}
+              <h3>{viewingProduct.title}</h3>
+              <p style={{ color: 'var(--primary)', fontWeight: 'bold', marginBottom: '8px' }}>Category: {viewingProduct.category}</p>
+              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Slug: {viewingProduct.slug}</p>
+              <div style={{ whiteSpace: 'pre-wrap', background: 'rgba(0,0,0,0.03)', padding: '16px', borderRadius: '8px' }}>
+                {viewingProduct.description}
+              </div>
+            </div>
+            <button 
+              className="contact-btn" 
+              style={{ width: '100%' }}
+              onClick={() => {
+                setEditingProduct(viewingProduct);
+                setViewingProduct(null);
+              }}
+            >
+              Edit this Product
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
