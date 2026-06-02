@@ -533,3 +533,14 @@ p {
 .modal-close:hover {
   color: white;
 }
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 20px 16px;
+  }
+  .modal-close {
+    top: 12px;
+    right: 12px;
+  }
+}
