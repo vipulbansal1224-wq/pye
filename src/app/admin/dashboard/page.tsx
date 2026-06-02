@@ -5,7 +5,14 @@ import { useRouter } from 'next/navigation';
 export default function AdminDashboard() {
   const [products, setProducts] = useState<any[]>([]);
   const [editingProduct, setEditingProduct] = useState<any | null>(null);
+  const [isLocalhost, setIsLocalhost] = useState(true);
+  const [uploading, setUploading] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setIsLocalhost(window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+    fetchProducts();
+  }, []);
 
   const fetchProducts = async () => {
     try {
@@ -19,9 +26,40 @@ export default function AdminDashboard() {
     }
   };
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  const categories = Array.from(new Set(products.map(p => p.category).filter(Boolean)));
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+    const file = e.target.files[0];
+    setUploading(true);
+    
+    const formData = new FormData();
+    formData.append('file', file);
+    
+    try {
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        const currentImages = Array.isArray(editingProduct.images) 
+          ? editingProduct.images 
+          : (editingProduct.images || '').split(',').map((s:string) => s.trim()).filter(Boolean);
+        
+        setEditingProduct({
+          ...editingProduct,
+          images: [...currentImages, data.url].join(', ')
+        });
+      } else {
+        alert('Upload failed: ' + data.error);
+      }
+    } catch (err) {
+      alert('Upload error');
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const handleDelete = async (slug: string) => {
     if (!confirm('Are you sure you want to delete this product?')) return;
@@ -62,6 +100,12 @@ export default function AdminDashboard() {
 
   return (
     <div className="container section-padding">
+      {!isLocalhost && (
+        <div style={{ background: '#fee2e2', color: '#991b1b', border: '1px solid #f87171', padding: '16px', borderRadius: '8px', marginBottom: '24px', fontWeight: 600 }}>
+          ⚠️ WARNING: You are using the live Netlify Admin Panel. Any images uploaded or products added here will be TEMPORARY and will disappear on the next website update. To save permanently, please run the website locally on your computer.
+        </div>
+      )}
+
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
         <h1>Admin Dashboard</h1>
         <button 
@@ -87,16 +131,31 @@ export default function AdminDashboard() {
                 <input className="form-control" value={editingProduct.slug} onChange={e => setEditingProduct({...editingProduct, slug: e.target.value})} required />
               </div>
               <div className="form-group">
-                <label className="form-label">Category</label>
-                <input className="form-control" value={editingProduct.category} onChange={e => setEditingProduct({...editingProduct, category: e.target.value})} />
+                <label className="form-label">Category (Select or Type New)</label>
+                <input 
+                  className="form-control" 
+                  list="categories-list"
+                  value={editingProduct.category} 
+                  onChange={e => setEditingProduct({...editingProduct, category: e.target.value})} 
+                  placeholder="e.g. pliers"
+                />
+                <datalist id="categories-list">
+                  {categories.map(cat => <option key={cat as string} value={cat as string} />)}
+                </datalist>
               </div>
               <div className="form-group">
-                <label className="form-label">Description</label>
-                <textarea className="form-control" rows={4} value={editingProduct.description} onChange={e => setEditingProduct({...editingProduct, description: e.target.value})} />
+                <label className="form-label">Description (Line by Line)</label>
+                <textarea className="form-control" rows={6} value={editingProduct.description} onChange={e => setEditingProduct({...editingProduct, description: e.target.value})} />
               </div>
               <div className="form-group">
                 <label className="form-label">Images (comma separated URLs)</label>
                 <input className="form-control" value={Array.isArray(editingProduct.images) ? editingProduct.images.join(', ') : editingProduct.images} onChange={e => setEditingProduct({...editingProduct, images: e.target.value})} />
+                
+                <div style={{ marginTop: '12px', padding: '12px', border: '1px dashed var(--border)', borderRadius: '8px' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, fontSize: '0.9rem' }}>Upload Image from Computer</label>
+                  <input type="file" accept="image/*" onChange={handleImageUpload} disabled={uploading} />
+                  {uploading && <span style={{ marginLeft: '12px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 'bold' }}>Uploading...</span>}
+                </div>
               </div>
               <button type="submit" className="contact-btn" style={{ width: '100%', marginTop: '16px' }}>Save Product</button>
             </form>
