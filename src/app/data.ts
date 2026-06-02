@@ -1210,18 +1210,7 @@ export const productsData: Product[] = [
       "/images/2022/11/aniso-300x56.jpg"
     ]
   },
-  {
-    "id": "2031",
-    "title": "Videos",
-    "slug": "videos",
-    "category": "other-products",
-    "hsnCode": "",
-    "description": "https://ludhcloud.com/pye/wp-content/uploads/2023/01/Two.mp4https://ludhcloud.com/pye/wp-content/uploads/2023/01/One.mp4",
-    "rawContent": "https://ludhcloud.com/pye/wp-content/uploads/2023/01/Two.mp4https://ludhcloud.com/pye/wp-content/uploads/2023/01/One.mp4",
-    "images": [
-      "/images/placeholder.png"
-    ]
-  },
+
   {
     "id": "2199",
     "title": "Combination Pliers (With Thick Insulation)",
@@ -1274,18 +1263,6 @@ export const productsData: Product[] = [
       "/images/2022/11/loader.gif",
       "/images/2022/11/aniso.jpg",
       "/images/2022/11/aniso-300x56.jpg"
-    ]
-  },
-  {
-    "id": "2947",
-    "title": "Catalogue",
-    "slug": "catalogue",
-    "category": "other-products",
-    "hsnCode": "",
-    "description": "n Catalogue -1n n n Catalogue -2n",
-    "rawContent": "<a href=\"https://ludhcloud.com/pye/wp-content/uploads/2025/03/Catalogue-1.pdf\">n\t\t\t\t\t\t\t\t\tCatalogue -1n\t\t\t\t\t</a>n\t\t\t\t\t<a href=\"https://ludhcloud.com/pye/wp-content/uploads/2025/03/Catalogue-2.pdf\">n\t\t\t\t\t\t\t\t\tCatalogue -2n\t\t\t\t\t</a>",
-    "images": [
-      "/images/placeholder.png"
     ]
   }
 ];
