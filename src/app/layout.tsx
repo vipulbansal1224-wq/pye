@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import Header from "@/components/Header";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
 
@@ -26,32 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <header className="header">
-          <div className="container header-container">
-            <Link href="/" className="logo-link">
-              <img src="/logo.jpg" alt="PYE Tools" style={{ height: '40px', width: 'auto' }} />
-            </Link>
-            
-            <nav className="nav-menu">
-              <Link href="/" className="nav-link">Home</Link>
-              <Link href="/about" className="nav-link">About Us</Link>
-              <div className="dropdown">
-                <button className="nav-link dropbtn">Products ▼</button>
-                <div className="dropdown-content glass-card">
-                  <Link href="/products?category=pliers">Pliers</Link>
-                  <Link href="/products?category=adjustable-wrenches">Wrenches</Link>
-                  <Link href="/products?category=tool-kits">Tool Kits</Link>
-                  <Link href="/products?category=other-products">Other Products</Link>
-                  <Link href="/products">All Products</Link>
-                </div>
-              </div>
-              <Link href="/downloads" className="nav-link">Downloads</Link>
-              <Link href="/knowledge" className="nav-link">Knowledge Base</Link>
-              <Link href="/careers" className="nav-link">Careers</Link>
-              <Link href="/contact" className="contact-btn">Get In Touch</Link>
-            </nav>
-          </div>
-        </header>
+        <Header />
 
         <main style={{ minHeight: "100vh", paddingTop: "80px" }}>
           {children}
