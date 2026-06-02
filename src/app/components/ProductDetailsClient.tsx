@@ -53,7 +53,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
           <div className="glass-card" style={{ 
             padding: "30px", 
             borderRadius: "16px", 
-            backgroundColor: "#12151b", 
+            backgroundColor: "transparent", 
             display: "flex", 
             alignItems: "center", 
             justifyContent: "center", 
@@ -69,34 +69,7 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
             />
           </div>
 
-          {/* Thumbnail Gallery (if more than 1 image) */}
-          {product.images.length > 1 && (
-            <div style={{ display: "flex", gap: "12px", marginTop: "16px", overflowX: "auto", padding: "8px 0" }}>
-              {product.images.map((img, idx) => (
-                <button 
-                  key={idx} 
-                  onClick={() => setActiveImage(img)}
-                  className="glass-card" 
-                  style={{ 
-                    width: "80px", 
-                    height: "80px", 
-                    padding: "8px", 
-                    backgroundColor: "#161a20",
-                    border: activeImage === img ? "2px solid var(--primary)" : "1px solid var(--border)",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0
-                  }}
-                >
-                  <img src={img} alt="" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
+          </div>
         {/* Right Column: Details & Technical Data */}
         <div>
           <span style={{ color: "var(--primary)", textTransform: "uppercase", fontSize: "0.8rem", fontWeight: 800, letterSpacing: "0.1em" }}>
@@ -110,8 +83,10 @@ export default function ProductDetailsClient({ product }: ProductDetailsClientPr
             </div>
           )}
 
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 600, color: "white", marginBottom: "12px" }}>Product Specifications</h3>
-          <p style={{ marginBottom: "30px", fontSize: "1.05rem" }}>{product.description}</p>
+          <h3 style={{ fontSize: "1.2rem", fontWeight: 600, color: "var(--foreground)", marginBottom: "12px" }}>Product Specifications</h3>
+          <p style={{ marginBottom: "30px", fontSize: "1.05rem", lineHeight: "1.8", whiteSpace: "pre-line" }}>
+            {product.description.replace(/(?:\s+n)+\s+/g, '\n\n').replace(/Backn/g, '').replace(/ n /g, '\n').trim()}
+          </p>
 
           {/* Key Compliance Features */}
           <div className="glass-card" style={{ padding: "24px", marginBottom: "32px", borderLeft: "3px solid var(--primary)" }}>

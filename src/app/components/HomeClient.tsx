@@ -160,14 +160,14 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
       </section>
 
       {/* Latest Innovations (Featured Products) */}
-      <section className="section-padding" style={{ background: "#090b0d" }}>
+      <section className="section-padding" style={{ background: "var(--secondary)" }}>
         <div className="container">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "48px" }}>
             <div>
               <span style={{ color: "var(--primary)", fontWeight: 700, textTransform: "uppercase", fontSize: "0.8rem", letterSpacing: "0.1em" }}>
                 Product Spotlight
               </span>
-              <h2 style={{ fontSize: "2.3rem", marginTop: "12px" }}>Our Latest Innovations</h2>
+              <h2 style={{ fontSize: "2.3rem", marginTop: "12px", color: "var(--foreground)" }}>Our Latest Innovations</h2>
             </div>
             <Link href="/products" className="product-link">
               View All Products &gt;&gt;
@@ -242,10 +242,10 @@ export default function HomeClient({ featuredProducts }: HomeClientProps) {
         <div className="glass-card" style={{ 
           padding: "60px 40px", 
           textAlign: "center", 
-          background: "linear-gradient(135deg, rgba(26,30,36,0.8) 0%, rgba(255,94,20,0.1) 100%)",
-          border: "1px solid rgba(255,94,20,0.2)"
+          background: "linear-gradient(135deg, #f8f9fa 0%, #ffece6 100%)",
+          border: "1px solid rgba(237,9,9,0.2)"
         }}>
-          <h2 style={{ fontSize: "2.3rem", marginBottom: "20px" }}>Inquire About Bulk Distributions</h2>
+          <h2 style={{ fontSize: "2.3rem", marginBottom: "20px", color: "var(--foreground)" }}>Inquire About Bulk Distributions</h2>
           <p style={{ maxWidth: "600px", margin: "0 auto 32px auto", fontSize: "1.05rem" }}>
             Whether you need customized toolkits for auto plants or bulk supplies of ISI-certified combination pliers, our sales team is ready to assist.
           </p>

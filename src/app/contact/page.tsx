@@ -177,7 +177,7 @@ export default function Contact() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#161a20",
+            backgroundColor: "#ffffff",
             border: "1px solid var(--border)"
           }}>
             {/* Visual aesthetic dark map grid indicator */}

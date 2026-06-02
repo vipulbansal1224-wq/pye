@@ -147,7 +147,7 @@ export default function Careers() {
                   value={formData.position} 
                   onChange={handleInputChange} 
                   className="form-control"
-                  style={{ width: "100%", background: "#161a20", color: "white" }}
+                  style={{ width: "100%", background: "#ffffff", color: "var(--foreground)" }}
                 >
                   <option value="machinist">CNC Machine Operator</option>
                   <option value="inspector">Quality Control Inspector</option>

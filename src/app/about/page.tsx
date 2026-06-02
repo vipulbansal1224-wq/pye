@@ -114,18 +114,18 @@ export default function About() {
       </div>
 
       {/* Scanned Certificates & Documents Section */}
-      <div style={{ background: "#090b0d", padding: "60px 40px", borderRadius: "16px", border: "1px solid var(--border)" }}>
+      <div style={{ background: "var(--secondary)", padding: "60px 40px", borderRadius: "16px", border: "1px solid var(--border)" }}>
         <h2 style={{ fontSize: "2rem", textAlign: "center", marginBottom: "16px" }}>Certified &amp; Endorsed Credentials</h2>
         <p style={{ textAlign: "center", maxWidth: "600px", margin: "0 auto 48px auto", color: "var(--text-muted)" }}>
           Bulk buyers, procurement executives, and international dealers can view and download our active certificates audited by international bodies.
         </p>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "32px" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "32px" }}>
           {CERTIFICATES.map((cert, idx) => (
-            <div key={idx} className="glass-card" style={{ padding: "24px", textAlign: "center", display: "flex", flexDirection: "column", height: "100%" }}>
+            <div key={idx} className="glass-card" style={{ padding: "24px", textAlign: "center", display: "flex", flexDirection: "column", width: "260px" }}>
               <div style={{ 
                 height: "120px", 
-                backgroundColor: "#161a20", 
+                backgroundColor: "#ffffff", 
                 borderRadius: "8px", 
                 display: "flex", 
                 alignItems: "center", 

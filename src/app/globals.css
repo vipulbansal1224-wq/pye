@@ -1,17 +1,17 @@
 :root {
-  --background: #0d0f12;
-  --foreground: #f3f4f6;
-  --primary: #ff5e14;
-  --primary-hover: #e04d0a;
-  --secondary: #1a1e24;
-  --accent: #2e3540;
-  --border: rgba(255, 255, 255, 0.08);
-  --text-muted: #9ca3af;
-  --card-bg: rgba(26, 30, 36, 0.6);
-  --glass-bg: rgba(13, 15, 18, 0.7);
-  --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+  --background: #ffffff;
+  --foreground: #333333;
+  --primary: #ed0909;
+  --primary-hover: #cc0808;
+  --secondary: #f8f9fa;
+  --accent: #e9ecef;
+  --border: rgba(0, 0, 0, 0.1);
+  --text-muted: #6c757d;
+  --card-bg: #ffffff;
+  --glass-bg: #ffffff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 * {
@@ -68,9 +68,9 @@ button {
 /* Base Layout Classes */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 4%;
 }
 
 .section-padding {
@@ -80,8 +80,6 @@ button {
 /* Glassmorphism Card styling */
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 16px;
   box-shadow: var(--shadow);
@@ -113,9 +111,7 @@ p {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(13, 15, 18, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: #ffffff;
   border-bottom: 1px solid var(--border);
   transition: var(--transition-smooth);
 }
@@ -173,6 +169,59 @@ p {
   width: 100%;
 }
 
+/* Dropdown Menu Styles */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 100;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdown-content a {
+  color: var(--foreground);
+  padding: 14px 20px;
+  text-decoration: none;
+  display: block;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--border);
+  font-weight: 500;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
 .contact-btn {
   background-color: var(--primary);
   color: white;
@@ -190,7 +239,7 @@ p {
 
 /* Footer Styling */
 .footer {
-  background-color: #06080a;
+  background-color: #f8f9fa;
   border-top: 1px solid var(--border);
   padding: 80px 0 40px 0;
   color: var(--text-muted);
@@ -298,22 +347,24 @@ p {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 0.8s ease-in-out, transform 8s linear;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: scale(1.05);
 }
 
 .slide.active {
   opacity: 1;
   z-index: 10;
+  transform: scale(1);
 }
 
 .slide-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.65);
+  filter: brightness(1);
 }
 
 .slide-overlay {
@@ -343,8 +394,8 @@ p {
 /* Featured Products grid */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 24px;
 }
 
 .product-card {
@@ -361,7 +412,7 @@ p {
   margin-bottom: 20px;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #12151b;
+  background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -372,6 +423,7 @@ p {
   max-height: 100%;
   object-fit: contain;
   transition: var(--transition-smooth);
+  mix-blend-mode: multiply;
 }
 
 .product-card:hover .product-img {

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"] });
 
 export const metadata: Metadata = {
   title: "PYE Tools Pvt. Ltd. | Premium Hand Tools Manufacturer & Exporter",
@@ -24,18 +24,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={poppins.className}>
       <body>
         <header className="header">
           <div className="container header-container">
             <Link href="/" className="logo-link">
-              <strong>PYE<span>TOOLS</span></strong>
+              <img src="/logo.jpg" alt="PYE Tools" style={{ height: '40px', width: 'auto' }} />
             </Link>
             
             <nav className="nav-menu">
               <Link href="/" className="nav-link">Home</Link>
               <Link href="/about" className="nav-link">About Us</Link>
-              <Link href="/products" className="nav-link">Products</Link>
+              <div className="dropdown">
+                <button className="nav-link dropbtn">Products ▼</button>
+                <div className="dropdown-content glass-card">
+                  <Link href="/products?category=pliers">Pliers</Link>
+                  <Link href="/products?category=adjustable-wrenches">Wrenches</Link>
+                  <Link href="/products?category=tool-kits">Tool Kits</Link>
+                  <Link href="/products?category=other-products">Other Products</Link>
+                  <Link href="/products">All Products</Link>
+                </div>
+              </div>
               <Link href="/downloads" className="nav-link">Downloads</Link>
               <Link href="/knowledge" className="nav-link">Knowledge Base</Link>
               <Link href="/careers" className="nav-link">Careers</Link>
@@ -53,7 +62,7 @@ export default function RootLayout({
             <div className="footer-grid">
               <div>
                 <Link href="/" className="logo-link" style={{ marginBottom: "20px", display: "inline-flex" }}>
-                  <strong>PYE<span>TOOLS</span></strong>
+                  <img src="/logo.jpg" alt="PYE Tools" style={{ height: '50px', width: 'auto', backgroundColor: '#fff', padding: '4px', borderRadius: '4px' }} />
                 </Link>
                 <p style={{ marginBottom: "24px" }}>
                   Established in 1983 in Ludhiana, Punjab, PYE Tools Private Limited is the largest manufacturer and exporter of professional-grade pliers and adjustable wrenches in India.
