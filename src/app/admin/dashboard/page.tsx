@@ -101,12 +101,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="container section-padding">
-      {!isLocalhost && (
-        <div style={{ background: '#fee2e2', color: '#991b1b', border: '1px solid #f87171', padding: '16px', borderRadius: '8px', marginBottom: '24px', fontWeight: 600 }}>
-          ⚠️ WARNING: You are using the live Netlify Admin Panel. Any images uploaded or products added here will be TEMPORARY and will disappear on the next website update. To save permanently, please run the website locally on your computer.
-        </div>
-      )}
-
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
         <h1>Admin Dashboard</h1>
         <button 
@@ -118,9 +112,9 @@ export default function AdminDashboard() {
       </div>
 
       {editingProduct && (
-        <div className="modal-overlay">
-          <div className="modal-content glass-card" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-            <button className="modal-close" onClick={() => setEditingProduct(null)}>&times;</button>
+        <div className="modal-overlay" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
+          <div className="modal-content glass-card" style={{ maxHeight: '90vh', overflowY: 'auto', background: '#ffffff', color: '#111827' }}>
+            <button className="modal-close" onClick={() => setEditingProduct(null)} style={{ color: '#111827' }}>&times;</button>
             <h2 style={{ marginBottom: '24px' }}>{editingProduct.id.length > 10 ? 'Add Product' : 'Edit Product'}</h2>
             <form onSubmit={handleSave}>
               <div className="form-group">
@@ -197,9 +191,9 @@ export default function AdminDashboard() {
       </div>
 
       {viewingProduct && (
-        <div className="modal-overlay">
-          <div className="modal-content glass-card" style={{ maxHeight: '90vh', overflowY: 'auto' }}>
-            <button className="modal-close" onClick={() => setViewingProduct(null)}>&times;</button>
+        <div className="modal-overlay" style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}>
+          <div className="modal-content glass-card" style={{ maxHeight: '90vh', overflowY: 'auto', background: '#ffffff', color: '#111827' }}>
+            <button className="modal-close" onClick={() => setViewingProduct(null)} style={{ color: '#111827' }}>&times;</button>
             <h2 style={{ marginBottom: '16px' }}>Product Preview</h2>
             <div style={{ marginBottom: '24px' }}>
               {viewingProduct.images && viewingProduct.images[0] && (
@@ -207,8 +201,8 @@ export default function AdminDashboard() {
               )}
               <h3>{viewingProduct.title}</h3>
               <p style={{ color: 'var(--primary)', fontWeight: 'bold', marginBottom: '8px' }}>Category: {viewingProduct.category}</p>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Slug: {viewingProduct.slug}</p>
-              <div style={{ whiteSpace: 'pre-wrap', background: 'rgba(0,0,0,0.03)', padding: '16px', borderRadius: '8px' }}>
+              <p style={{ fontSize: '0.9rem', color: '#6c757d', marginBottom: '16px' }}>Slug: {viewingProduct.slug}</p>
+              <div style={{ whiteSpace: 'pre-wrap', background: '#f8f9fa', padding: '16px', borderRadius: '8px', border: '1px solid #e9ecef' }}>
                 {viewingProduct.description}
               </div>
             </div>
