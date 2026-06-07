@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
@@ -138,3 +139,4 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: 'Failed to delete product' }, { status: 500 });
   }
 }
+

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
@@ -61,3 +62,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, error: 'Failed to upload file' }, { status: 500 });
   }
 }
+
