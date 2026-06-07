@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
@@ -21,4 +20,5 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: false, error: 'Server error' }, { status: 500 });
   }
 }
+
 
